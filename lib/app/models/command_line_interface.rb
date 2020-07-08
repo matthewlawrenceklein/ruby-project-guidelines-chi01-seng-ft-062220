@@ -20,9 +20,9 @@ def welcome
             print "> "
             id = gets.chomp
             $user = User.all.find{ |user| user.id == id.to_i }
+            
             puts "Welcome back #{$user.name}"
         end
-
 end
 
 def display_options
@@ -46,20 +46,32 @@ def user_input
             add_to_favorites()
 
         when $options_response == 'MY FAVORITES' 
-            self.matches.each do |match|
+            $user.matches.each do |match|
                 ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location} on #{match.date}, starting at #{match.start_time}"
             end
-                puts "Would you like to remove any favorites Y/N?"
-                #TODO write out removal user input logic
-                answer = gets.chomp
-                    if answer == "Y"
-                        #TODO delete logic
-                    elsif answer == 'N'
-                        user_input()
-                    else
-                        puts "Sorry, improper input."
-                        user_input()
-                    end
+                remove_response = $prompt.select("Would you like to remove any favorites?", "YES", "NO" )
+                
+                case 
+                when remove_response == "YES"
+                    puts "Please select a match to remove by ID"
+                    match_remove = gets.chomp
+                    $user.remove_favorite(match_remove)
+                    
+                when remove_response == "NO"
+                    puts "super nice"
+                    user_input()                    
+                end
+                # puts "Would you like to remove any favorites Y/N?"
+                # #TODO write out removal user input logic
+                # answer = gets.chomp
+                #     if answer == "Y"
+                #         #TODO delete logic
+                #     elsif answer == 'N'
+                #         user_input()
+                #     else
+                #         puts "Sorry, improper input."
+                #         user_input()
+                #     end
         when $options_response == "EXIT"
             exit 
         end
@@ -67,26 +79,24 @@ def user_input
 end
 
 def add_to_favorites
-    puts "Would you like to add a match to your favorites? Y/N"
-    answer = gets.chomp
-        if answer == "Y"
+
+   answer = prompt.select("Would you like to add a match to your favorites?", "YES", "NO")
+        case
+        when answer == "YES"
             puts "Please select a match by ID"
             print "> "
             number = gets.chomp 
             Favorite.create(user_id: $user.id, match_id: number)
             puts "your favorites are now:"
-             
-            $user.matches.each do |match|
-                ap "#{match.home_team} play #{match.away_team} at #{match.location} on #{match.date}, starting at #{match.start_time}"
-            end
+            puts $user.favorites 
+            # $user.matches.each do |match|
+            #     ap "#{match.home_team} play #{match.away_team} at #{match.location} on #{match.date}, starting at #{match.start_time}"
+            # end
 
             display_options()
             user_input()
-        elsif answer == "N"
+        when answer == "NO"
             display_options()
-            user_input()
-        else 
-            puts "Sorry, improper input."
             user_input()
         end
 end

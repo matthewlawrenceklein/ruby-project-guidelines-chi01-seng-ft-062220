@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
     end
 
     def remove_favorite(id)
-        Favorite.destroy(id)
+       remove_me = self.favorites.find { |favorite| favorite.match_id == id}
+       remove_me.destroy        
     end
 
 
