@@ -2,39 +2,43 @@ $prompt = TTY::Prompt.new
 
 def welcome
     # puts $greeting.colorize(:color => :light_blue)
-    answer = $prompt.select("Welcome to BIG SPORTS CLI", "NEW USER", "EXISTING USER")
+    answer = $prompt.select("Welcome to BIG SPORTS CLI".colorize(:color => :black, :background => :light_green), "NEW USER", "EXISTING USER")
         case
         when answer == "NEW USER"
-            puts "Whats your name?"
+            puts "Whats your name?".colorize(:color => :black, :background => :light_green)
             print "> "
             name = gets.chomp
             $user = User.create(name: name)
-            puts "Your user ID is #{$user.id}, please remember this number!"
+            welcomeUser = TTY::Box.success("Your user ID is #{$user.id}, please remember this number!")
+            print welcomeUser
         when answer == "EXISTING USER"
             puts "Please enter your user ID"
             print "> "
             id = gets.chomp
             $user = User.all.find{ |user| user.id == id.to_i }
             
-            puts "Welcome back #{$user.name}"
+            welcomeExistingUser = TTY::Box.success("Welcome back #{$user.name}")
+            print welcomeExistingUser
         end
 end
 
 def display_options
-    $options_response = $prompt.select("Main Menu", "FIND MATCHES BY STADIUM", "FIND MATCHES BY TEAM", "MY FAVORITES", "EXIT")
+    $options_response = $prompt.select("Main Menu".colorize(:color => :black, :background => :light_green), "FIND MATCHES BY STADIUM", "FIND MATCHES BY TEAM", "MY FAVORITES", "EXIT")
 end
 
 def user_input
     case
         when $options_response == 'FIND MATCHES BY STADIUM'
-            puts "Please enter a stadium and city (IE 'Vitality Stadium, Bournemouth')"
+            instructionFindMatches = TTY::Box.info("Please enter a stadium and city (IE 'Vitality Stadium, Bournemouth')")
+            print instructionFindMatches
             print "> "
             stadium = gets.chomp 
             Match.sort_by_location(stadium)
             add_to_favorites()
 
         when $options_response == 'FIND MATCHES BY TEAM'
-            puts "What team would you like to find?"
+            instructionFindTeam = TTY::Box.info("What team would you like to find?")
+            print instructionFindTeam
             print "> "
             team = gets.chomp 
             Match.sort_by_team(team)
@@ -79,14 +83,15 @@ end
 
 def add_to_favorites
 
-   answer = $prompt.select("Would you like to add a match to your favorites?", "YES", "NO")
+   answer = $prompt.select("Would you like to add a match to your favorites?".colorize(:color => :black, :background => :light_green), "YES", "NO")
         case
         when answer == "YES"
             puts "Please select a match by ID"
             print "> "
             number = gets.chomp 
             Favorite.create(user_id: $user.id, match_id: number)
-            puts "your favorites are now:"
+            favoriteMathesAre = TTY::Box.info("your favorites are now:")
+            print favoriteMathesAre 
             $user.matches.each { |match| ap "#{match.home_team} play #{match.away_team} at #{match.location}." }
 
             display_options()
