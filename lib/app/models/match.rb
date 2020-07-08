@@ -6,7 +6,7 @@ class Match < ActiveRecord::Base
         matches = Match.all.select { |match| match.home_team == team_name || match.away_team == team_name } 
 
         matches.each do |match|
-            ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location}"
+            ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location} on #{match.date}, starting at #{match.start_time}"
         end
     end
 
