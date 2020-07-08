@@ -1,7 +1,3 @@
-### DEFINE AP TEXT OBJECTS HERE ***
-
-
-###################################
 $prompt = TTY::Prompt.new
 
 def welcome
@@ -48,6 +44,8 @@ def user_input
             $user.matches.each do |match|
                 ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location} on #{match.date}, starting at #{match.start_time}"
             end
+            # ap $user.matches 
+
                 remove_response = $prompt.select("Would you like to remove any favorites?", "YES", "NO" )
                 
                 case 
@@ -60,17 +58,6 @@ def user_input
                     puts "super nice"
                     user_input()                    
                 end
-                # puts "Would you like to remove any favorites Y/N?"
-                # #TODO write out removal user input logic
-                # answer = gets.chomp
-                #     if answer == "Y"
-                #         #TODO delete logic
-                #     elsif answer == 'N'
-                #         user_input()
-                #     else
-                #         puts "Sorry, improper input."
-                #         user_input()
-                #     end
         when $options_response == "EXIT"
             exit 
         end
@@ -79,7 +66,7 @@ end
 
 def add_to_favorites
 
-   answer = prompt.select("Would you like to add a match to your favorites?", "YES", "NO")
+   answer = $prompt.select("Would you like to add a match to your favorites?", "YES", "NO")
         case
         when answer == "YES"
             puts "Please select a match by ID"
