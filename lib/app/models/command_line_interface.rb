@@ -34,12 +34,12 @@ def user_input
         puts "What team would you like to find?"
         print "> "
         team = gets.chomp 
-        ap Match.sort_by_team(team)
+        Match.sort_by_team(team)
         add_to_favorites()
 
     elsif answer == 'MY FAVORITES' 
         $user.matches.each do |match|
-            ap "#{match.home_team} play #{match.away_team} at #{match.location}"
+            ap "#{match.match_id} -- #{match.home_team} play #{match.away_team} at #{match.location}"
         end
         puts "Would you like to remove any favorites Y/N?"
         #TODO write out removal user input logic
