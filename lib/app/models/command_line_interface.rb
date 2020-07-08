@@ -39,7 +39,7 @@ def user_input
 
     elsif answer == 'MY FAVORITES' 
         $user.matches.each do |match|
-            ap "#{match.match_id} -- #{match.home_team} play #{match.away_team} at #{match.location}"
+            ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location}"
         end
         puts "Would you like to remove any favorites Y/N?"
         #TODO write out removal user input logic
