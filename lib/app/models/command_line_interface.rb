@@ -19,7 +19,7 @@ def welcome
             puts "Please enter your user ID"
             print "> "
             id = gets.chomp
-            $user = User.all.detect{ |user| user.id == id }
+            $user = User.all.find{ |user| user.id == id.to_i }
             puts "Welcome back #{$user.name}"
         end
 
