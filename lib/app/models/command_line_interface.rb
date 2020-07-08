@@ -41,23 +41,35 @@ def user_input
             add_to_favorites()
 
         when $options_response == 'MY FAVORITES' 
-            $user.matches.each do |match|
-                ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location} on #{match.date}, starting at #{match.start_time}"
-            end
-            # ap $user.matches 
-
-                remove_response = $prompt.select("Would you like to remove any favorites?", "YES", "NO" )
-                
-                case 
-                when remove_response == "YES"
-                    puts "Please select a match to remove by ID"
-                    match_remove = gets.chomp
-                    $user.remove_favorite(match_remove)
+                def favorites_menu
+                    $user.matches.each do |match|
+                        ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location} on #{match.date}, starting at #{match.start_time}"
+                    end
+        
+                    favorites_response = $prompt.select("What would you like to do?", "Sort by home team", "Sort by stadium", "Remove favorite", "Return to main menu" )
                     
-                when remove_response == "NO"
-                    puts "super nice"
-                    user_input()                    
+                    case 
+                    when favorites_response == "Remove favorite"
+                        puts "Please select a match to remove by ID"
+                        match_remove = gets.chomp
+                        $user.remove_favorite(match_remove)
+                        
+                    when favorites_response == "Return to main menu"
+                        display_options()
+                        user_input()    
+    
+                    when favorites_response == "Sort by home team"
+                        home_sorted =  $user.matches.sort_by { |match| match.home_team }
+                        home_sorted.each { |match| ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location}" }
+                        favorites_menu()
+    
+                    when favorites_response == "Sort by stadium"
+                        stadium_sorted = $user.matches.sort_by { |match| match.location}
+                        stadium_sorted.each { |match| ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location}" }
+                        favorites_menu()
+                    end
                 end
+                favorites_menu()
         when $options_response == "EXIT"
             exit 
         end
@@ -74,10 +86,7 @@ def add_to_favorites
             number = gets.chomp 
             Favorite.create(user_id: $user.id, match_id: number)
             puts "your favorites are now:"
-            puts $user.favorites 
-            # $user.matches.each do |match|
-            #     ap "#{match.home_team} play #{match.away_team} at #{match.location} on #{match.date}, starting at #{match.start_time}"
-            # end
+            $user.matches.each { |match| ap "#{match.home_team} play #{match.away_team} at #{match.location} on #{match.date}, starting at #{match.start_time}" }
 
             display_options()
             user_input()

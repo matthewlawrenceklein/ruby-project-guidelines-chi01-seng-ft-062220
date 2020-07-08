@@ -5,7 +5,7 @@ class CreateMatches < ActiveRecord::Migration[5.2]
       t.string :away_team
       t.string :location
       t.datetime :date
-      t.datetime :start_time
+      # t.datetime :start_time
     end
   end
 end
