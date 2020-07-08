@@ -1,6 +1,5 @@
 ### DEFINE AP TEXT OBJECTS HERE ***
-# $greeting = """Hello, welcome to BIG SPORTS CLI!
-# Whats your name? """
+
 
 ###################################
 $prompt = TTY::Prompt.new
