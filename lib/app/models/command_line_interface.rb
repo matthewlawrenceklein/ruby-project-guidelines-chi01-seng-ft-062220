@@ -51,7 +51,9 @@ def user_input
                     when favorites_response == "Remove favorite"
                         puts "Please select a match to remove by ID"
                         match_remove = gets.chomp
-                        $user.remove_favorite(match_remove)
+                        $user.remove_favorite(match_remove.to_i)
+                        puts "REMOVED"
+                        favorites_menu()
                         
                     when favorites_response == "Return to main menu"
                         display_options()
