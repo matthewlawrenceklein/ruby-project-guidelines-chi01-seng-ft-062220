@@ -27,7 +27,7 @@ end
 def user_input
     case
         when $options_response == 'FIND MATCHES BY STADIUM'
-            puts "What stadium would you like to find?"
+            puts "Please enter a stadium and city (IE 'Vitality Stadium, Bournemouth')"
             print "> "
             stadium = gets.chomp 
             Match.sort_by_location(stadium)
