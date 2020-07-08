@@ -21,16 +21,16 @@ def welcome
 end
 
 def display_options
-    $options_response = $prompt.select("Main Menu", "FIND MATCHES BY DATE", "FIND MATCHES BY TEAM", "MY FAVORITES", "EXIT")
+    $options_response = $prompt.select("Main Menu", "FIND MATCHES BY STADIUM", "FIND MATCHES BY TEAM", "MY FAVORITES", "EXIT")
 end
 
 def user_input
     case
-        when $options_response == 'FIND MATCHES BY DATE'
-            puts "What team would you like to find?"
+        when $options_response == 'FIND MATCHES BY STADIUM'
+            puts "What stadium would you like to find?"
             print "> "
-            date = gets.chomp 
-            Match.sort_by_date(date)
+            stadium = gets.chomp 
+            Match.sort_by_location(stadium)
             add_to_favorites()
 
         when $options_response == 'FIND MATCHES BY TEAM'
@@ -41,11 +41,10 @@ def user_input
             add_to_favorites()
 
         when $options_response == 'MY FAVORITES' 
+            $user.matches.each do |match|
+                ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location}."
+            end
                 def favorites_menu
-                    $user.matches.each do |match|
-                        ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location} on #{match.date}, starting at #{match.start_time}"
-                    end
-        
                     favorites_response = $prompt.select("What would you like to do?", "Sort by home team", "Sort by stadium", "Remove favorite", "Return to main menu" )
                     
                     case 
@@ -59,13 +58,15 @@ def user_input
                         user_input()    
     
                     when favorites_response == "Sort by home team"
-                        home_sorted =  $user.matches.sort_by { |match| match.home_team }
+                        puts "~" * 20
+                        home_sorted = $user.matches.sort_by { |match| match.home_team }
                         home_sorted.each { |match| ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location}" }
                         favorites_menu()
     
                     when favorites_response == "Sort by stadium"
+                        puts "~" * 20
                         stadium_sorted = $user.matches.sort_by { |match| match.location}
-                        stadium_sorted.each { |match| ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location}" }
+                        stadium_sorted.each { |match| ap  "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location}" }
                         favorites_menu()
                     end
                 end
@@ -86,7 +87,7 @@ def add_to_favorites
             number = gets.chomp 
             Favorite.create(user_id: $user.id, match_id: number)
             puts "your favorites are now:"
-            $user.matches.each { |match| ap "#{match.home_team} play #{match.away_team} at #{match.location} on #{match.date}, starting at #{match.start_time}" }
+            $user.matches.each { |match| ap "#{match.home_team} play #{match.away_team} at #{match.location}." }
 
             display_options()
             user_input()
