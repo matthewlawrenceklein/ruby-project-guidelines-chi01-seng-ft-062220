@@ -1,5 +1,5 @@
 $prompt = TTY::Prompt.new
-#nice ok good
+#nice ok good perfect
 
 def welcome
     answer = $prompt.select("""WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64
