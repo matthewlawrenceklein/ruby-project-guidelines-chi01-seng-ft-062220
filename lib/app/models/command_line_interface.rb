@@ -28,7 +28,8 @@ WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BU
                     $user = User.all.find{ |user| user.id == answer_id.to_i }    
                     welcomeExistingUser = TTY::Box.success("Welcome back #{$user.name}")
                     print welcomeExistingUser
-                else puts "USER ID NOT FOUND SORRY FRIEND"
+                else puts TTY::Box.error("USER ID NOT FOUND SORRY FRIEND")
+                    
                     welcome()
             end
         end

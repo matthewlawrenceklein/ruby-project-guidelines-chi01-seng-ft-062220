@@ -1,59 +1,148 @@
-# Module One Final Project Guidelines
+# Module One Final Project 
 
-Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
+SOCCER BUDDY 64 CLI application
+Using  CSV data with ruby’s built in capability for our Flatiron School Module One Project
 
-For your final project, we'll be building a Command Line database application.
+Use our interactive application to create your account and keep track of your favorite teams in the English Premier League by adding them to your favorites. 
 
-## Project Requirements
+Sort through them by team or stadium so you know where and when your favorite teams play at all times!
 
-### Option One - Data Analytics Project
+Tagline: "Never miss a match on the English Premier League circuit, your one stop shop for every game in the series based on your favorite teams"
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have at minimum three models including one join model. This means you must have a many-to-many relationship.
-3. You should seed your database using data that you collect either from a CSV, a website by scraping, or an API.
-4. Your models should have methods that answer interesting questions about the data. For example, if you've collected info about movie reviews, what is the most popular movie? What movie has the most reviews?
-5. You should provide a CLI to display the return values of your interesting methods.  
-6. Use good OO design patterns. You should have separate classes for your models and CLI interface.
 
-  **Resource:** [Easy Access APIs](https://github.com/learn-co-curriculum/easy-access-apis)
+## Getting Started
 
-### Option Two - Command Line CRUD App
+Repository - https://github.com/matthewlawrenceklein/ruby-project-guidelines-chi01-seng-ft-062220
 
-1. Access a Sqlite3 Database using ActiveRecord.
-2. You should have a minimum of three models.
-3. You should build out a CLI to give your user full CRUD ability for at least one of your resources. For example, build out a command line To-Do list. A user should be able to create a new to-do, see all todos, update a todo item, and delete a todo. Todos can be grouped into categories, so that a to-do has many categories and categories have many to-dos.
-4. Use good OO design patterns. You should have separate classes for your models and CLI interface.
+Run SOCCER BUDDY 64 CLI from your command line by entering:
 
-### Brainstorming and Proposing a Project Idea
+ruby bin/run.rb
 
-Projects need to be approved prior to launching into them, so take some time to brainstorm project options that will fulfill the requirements above.  You must have a minimum of four [user stories](https://en.wikipedia.org/wiki/User_story) to help explain how a user will interact with your app.  A user story should follow the general structure of `"As a <role>, I want <goal/desire> so that <benefit>"`. For example, if we were creating an app to randomly choose nearby restaurants on Yelp, we might write:
+### Main Menu
 
-* As a user, I want to be able to enter my name to retrieve my records
-* As a user, I want to enter a location and be given a random nearby restaurant suggestion
-* As a user, I should be able to reject a suggestion and not see that restaurant suggestion again
-* As a user, I want to be able to save to and retrieve a list of favorite restaurant suggestions
+The BIG SPORTS CLI main menu should pop up in your terminal!
+Select an option from the main menu to proceed:
 
-## Instructions
+1. Create a new user 
+2. Log in to an existing user using a unique user ID number.
 
-1. Fork and clone this repository.
-2. Build your application. Make sure to commit early and commit often. Commit messages should be meaningful (clearly describe what you're doing in the commit) and accurate (there should be nothing in the commit that doesn't match the description in the commit message). Good rule of thumb is to commit every 3-7 mins of actual coding time. Most of your commits should have under 15 lines of code and a 2 line commit is perfectly acceptable.
-3. Make sure to create a good README.md with a short description, install instructions, a contributor's guide and a link to the license for your code.
-4. Make sure your project checks off each of the above requirements.
-5. Prepare a video demo (narration helps!) describing how a user would interact with your working project.
-    * The video should:
-      - Have an overview of your project. (2 minutes max)
-6. Prepare a presentation to follow your video. (3 minutes max)
-    * Your presentation should:
-      - Describe something you struggled to build, and show us how you ultimately implemented it in your code.
-      - Discuss 3 things you learned in the process of working on this project.
-      - Address what, if anything, you would change or add to what you have today.
-      - Present any code you would like to highlight.   
-7. *OPTIONAL, BUT RECOMMENDED*: Write a blog post about the project and process.
+### New Users
 
----
-### Common Questions:
-- How do I turn off my SQL logger?
-```ruby
-# in config/environment.rb add this line:
-ActiveRecord::Base.logger = nil
-```
+1. Enter your name.
+2. You will be assigned a unique ID number.
+3. This number will be used to log in as an existing user in the future.
+4. After creating your account you will be taken into the Account  Menu.
+5. See My Account menu in README for next steps.
+
+### Existing Users
+
+1. Enter your assigned ID number to access your account.
+2. After logging in you will be taken into the Account Menu
+3. See Account Menu in README for next steps.
+
+
+### Account Menu
+
+1. After logging in or creating a new account you will be taken into your account menu where you can choose from different options:
+    a. Find Matches by Stadium
+    b. Find Matches by Team
+    c. My Favorites
+    d. Exit
+2. Find Matches by Stadium
+    a. Use this search function to type in a stadium. 
+        i. English Premier League Stadiums: 	
+Amex Stadium, Falmer			          Emirates Stadium, London
+Anfield, Liverpool				          Etihad Stadium, Manchester
+Bramall Lane, Sheffield		          Goodison Park, Liverpool
+Carrow Road, Norwich			          Molineux Stadium, Wolverhampton			
+King Power Stadium, London			    Old Trafford, Manchester
+Selhurst Park, London			          St. James’ Park Newcastle
+St. Mary’s Stadium, Southampton	    Stamford Bridge, London
+Tottenham Hotspur Stadium, London		Turf Moor, Burnley
+Vicarage Road, Watford			        Villa Park, Birmingham
+Vitality Stadium, Bournemouth
+    b. After inputting a team the app will ask you if you want to add from these selections if YES then use the ID eg: 	"746 -- AFC Bournemouth play Southampton at Vitality Stadium, Bournemouth." 746 in this case to add to your favorites. 
+    c. If No is selected the app will return you to the account menu.
+
+
+
+
+
+3. Find Matches by Team
+    a. Use this search function to type in your desired team.
+        i. English Premier League Teams:
+AFC Bournemouth				  Arsenal
+Aston Villa					    Brighton and Hove Albion
+Burnley					        Chelsea
+Crystal Palace					Everton
+Leicester City					Liverpool
+Manchester City				  Manchester United
+Newcastle United				Norwich City
+Sheffield United				Southampton
+Tottenham Hotspur				Watford
+West Ham United				  Wolverhampton
+    b.  After inputting a team the app will ask you if you want to add from these selections if YES then use the ID eg: 
+    "737 -- Chelsea play Norwich City at Stamford Bridge, London." 737 in this case
+    c. If No is selected the app will return you to the account menu.
+
+4. My Favorites
+    a. My Favorites option will take you into your account with 4 options.
+        i.  Sort by home team
+            * Displays your favorites in a list alphabetically by the home team.
+        ii. Sort by stadium
+            * Displays your favorites in a list alphabetically by the stadium.
+        iii Remove favorite 
+            * Input an ID to remove specific item from list.
+        iv  Return to main menu
+            *Return user to main menu.
+
+
+### Project Background
+
+Module One Project outline:
+
+1. Build at least three models with corresponding tables, including a join table
+2. Access a Sqlite3 Database using ActiveRecord
+3. Seed database with data from an API
+4. Build out a CLI that allows users to interact with database
+5. Separate models for runner and CLI interface
+
+
+## MVP and Stretch Goals
+
+MVP:
+
+1. Include a basic menu in the CLI with which the user can interact
+2. Take users through multiple menus and functional options.
+3. Users can navigate through matches based on stadium or team name and add to his or her list of favorites.
+4. reating, Reading, Updating, and Deleting lists of favorites.
+5. Exit option to close the program.
+6. When logging back in data for User and Favorites persists. 
+
+Stretch goals:
+
+1. User validation, checking for existing users.
+2. Adding style functionally to make seamless transitions between menus and adds to the interface experience. 
+
+Gems used:
+
+source "https://rubygems.org"
+gem "activerecord", '~> 5.2'
+gem "sinatra-activerecord"
+gem "sqlite3", '~> 1.3.6'
+gem "pry"
+gem "require_all"
+gem "faker"
+gem 'rake'
+gem 'awesome_print'
+gem 'spreadsheet'
+gem 'colorize'
+gem 'csv'
+gem 'tty-prompt'
+gem 'tty-box'
+
+
+## Authors
+
+Mathew Klein - https://github.com/matthewlawrenceklein
+Jacob Wazydrag - https://github.com/J-Waz
