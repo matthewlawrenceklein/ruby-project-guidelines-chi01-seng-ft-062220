@@ -1,4 +1,5 @@
 $prompt = TTY::Prompt.new
+#nice 
 
 def welcome
     # puts $greeting.colorize(:color => :light_blue)
