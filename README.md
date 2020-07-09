@@ -1,3 +1,7 @@
+<div align="center">
+  <a href="https://piotrmurach.github.io/tty" target="_blank"><img width="130" src="https://github.com/piotrmurach/tty/blob/master/images/tty.png" alt="tty logo" /></a>
+</div>
+
 # Module One Final Project 
 
 SOCCER BUDDY 64 CLI application
