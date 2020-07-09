@@ -1,8 +1,7 @@
 $prompt = TTY::Prompt.new
-#nice 
+#nice ok good
 
 def welcome
-    # puts $greeting.colorize(:color => :light_blue)
     answer = $prompt.select("""WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64
 WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64
 WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64
@@ -22,7 +21,7 @@ WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BU
             print "> "
             answer_id = gets.chomp   
             allIds = []
-            User.all.each {|user| allIds << user.id}
+            User.all.each { |user| allIds << user.id }
 
             if allIds.include?(answer_id.to_i)
                     $user = User.all.find{ |user| user.id == answer_id.to_i }    
@@ -75,21 +74,22 @@ def user_input
                         favoriteMatchesAre = TTY::Box.info("your favorites are now:")
                         print favoriteMatchesAre 
                         $user.matches.each { |match| ap "#{match.home_team} play #{match.away_team} at #{match.location}." }
-                       
-
                         favorites_menu()
                         
                     when favorites_response == "Return to main menu"
+                        system('clear')
                         display_options()
                         user_input()    
     
                     when favorites_response == "Sort by home team"
+                        system('clear')
                         puts "~" * 20
                         home_sorted = $user.matches.sort_by { |match| match.home_team }
                         home_sorted.each { |match| ap "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location}" }
                         favorites_menu()
     
                     when favorites_response == "Sort by stadium"
+                        system('clear')
                         puts "~" * 20
                         stadium_sorted = $user.matches.sort_by { |match| match.location}
                         stadium_sorted.each { |match| ap  "#{match.id} -- #{match.home_team} play #{match.away_team} at #{match.location}" }
@@ -101,11 +101,9 @@ def user_input
             system('clear')
             exit 
         end
-
 end
 
 def add_to_favorites
-
    answer = $prompt.select("Would you like to add a match to your favorites?".colorize(:color => :black, :background => :light_green), "YES", "NO")
         case
         when answer == "YES"
