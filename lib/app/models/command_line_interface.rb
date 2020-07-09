@@ -56,7 +56,14 @@ def user_input
                         puts "Please select a match to remove by ID"
                         match_remove = gets.chomp
                         $user.remove_favorite(match_remove.to_i)
+                        $user.reload
+                        system('clear')
                         puts "REMOVED"
+                        favoriteMatchesAre = TTY::Box.info("your favorites are now:")
+                        print favoriteMatchesAre 
+                        $user.matches.each { |match| ap "#{match.home_team} play #{match.away_team} at #{match.location}." }
+                       
+
                         favorites_menu()
                         
                     when favorites_response == "Return to main menu"
@@ -78,6 +85,7 @@ def user_input
                 end
                 favorites_menu()
         when $options_response == "EXIT"
+            system('clear')
             exit 
         end
 
@@ -91,15 +99,17 @@ def add_to_favorites
             puts "Please select a match by ID"
             print "> "
             number = gets.chomp 
+            system('clear')
             Favorite.create(user_id: $user.id, match_id: number)
-            favoriteMathesAre = TTY::Box.info("your favorites are now:")
-            print favoriteMathesAre 
+            favoriteMatchesAre = TTY::Box.info("your favorites are now:")
+            print favoriteMatchesAre 
             $user.reload
             $user.matches.each { |match| ap "#{match.home_team} play #{match.away_team} at #{match.location}." }
             
             display_options()
             user_input()
         when answer == "NO"
+            system('clear')
             display_options()
             user_input()
         end
