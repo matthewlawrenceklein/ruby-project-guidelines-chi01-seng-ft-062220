@@ -1,6 +1,7 @@
 <div align="center">
-  <a href="https://piotrmurach.github.io/tty" target="_blank"><img width="130" src="https://github.com/piotrmurach/tty/blob/master/images/tty.png" alt="SOCCER BUDDY 64 logo" /></a>
+  <img src="/matthewlawrenceklein/ruby-project-guidelines-chi01-seng-ft-062220/blob/Jacob/Images/N64%20SUPPER%20SOCCER%20BUDDY%2064.jpg?raw=true" alt="N64 SUPPER SOCCER BUDDY 64.jpg">
 </div>
+
 
 # Module One Final Project 
 
