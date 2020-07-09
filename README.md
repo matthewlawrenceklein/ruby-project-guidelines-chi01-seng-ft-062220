@@ -1,8 +1,4 @@
-<div align="center">
-  <img src="/matthewlawrenceklein/ruby-project-guidelines-chi01-seng-ft-062220/blob/Jacob/Images/N64%20SUPPER%20SOCCER%20BUDDY%2064.jpg?raw=true" alt="N64 SUPPER SOCCER BUDDY 64.jpg">
-</div>
-
-
+<a href="https://github.com/matthewlawrenceklein/ruby-project-guidelines-chi01-seng-ft-062220"><img src="https://github.com/matthewlawrenceklein/ruby-project-guidelines-chi01-seng-ft-062220/blob/Jacob/Images/N64%20SUPPER%20SOCCER%20BUDDY%2064.jpg" title="ModuleOneProject" alt="ModuleOneProject"></a>
 # Module One Final Project 
 
 SOCCER BUDDY 64 CLI application
