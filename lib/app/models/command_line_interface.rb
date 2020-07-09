@@ -92,8 +92,9 @@ def add_to_favorites
             Favorite.create(user_id: $user.id, match_id: number)
             favoriteMathesAre = TTY::Box.info("your favorites are now:")
             print favoriteMathesAre 
+            $user.reload
             $user.matches.each { |match| ap "#{match.home_team} play #{match.away_team} at #{match.location}." }
-
+            
             display_options()
             user_input()
         when answer == "NO"
