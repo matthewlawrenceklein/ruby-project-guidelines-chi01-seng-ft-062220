@@ -2,7 +2,12 @@ $prompt = TTY::Prompt.new
 
 def welcome
     # puts $greeting.colorize(:color => :light_blue)
-    answer = $prompt.select("Welcome to BIG SPORTS CLI".colorize(:color => :black, :background => :light_green), "NEW USER", "EXISTING USER")
+    answer = $prompt.select("""WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64
+WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64
+WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64
+WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64
+WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64
+WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64 || WELCOME TO SOCCER BUDDY 64""".colorize(:color => :black, :background => :light_green), "NEW USER", "EXISTING USER")
         case
         when answer == "NEW USER"
             puts "Whats your name?".colorize(:color => :black, :background => :light_green)
@@ -14,11 +19,17 @@ def welcome
         when answer == "EXISTING USER"
             puts "Please enter your user ID"
             print "> "
-            id = gets.chomp
-            $user = User.all.find{ |user| user.id == id.to_i }
-            
-            welcomeExistingUser = TTY::Box.success("Welcome back #{$user.name}")
-            print welcomeExistingUser
+            answer_id = gets.chomp   
+            allIds = []
+            User.all.each {|user| allIds << user.id}
+
+            if allIds.include?(answer_id.to_i)
+                    $user = User.all.find{ |user| user.id == answer_id.to_i }    
+                    welcomeExistingUser = TTY::Box.success("Welcome back #{$user.name}")
+                    print welcomeExistingUser
+                else puts "USER ID NOT FOUND SORRY FRIEND"
+                    welcome()
+            end
         end
 end
 
